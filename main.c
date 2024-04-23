@@ -1,5 +1,4 @@
-﻿#include "LCD_Test.h"   //Examples
-#include "GUI_Paint.h"
+﻿#include "GUI_Paint.h"
 #include "LCD_2in.h"
 
 #include <string.h>
@@ -41,6 +40,7 @@ void core1_entry() {
     int coordYfifo[arrLength];
     
     while (1){
+        //time scaling : read pot value
         adc_select_input(1);
         uint adc_pot2;        
         adc_pot2 = adc_read();
@@ -52,7 +52,6 @@ void core1_entry() {
         int scaleSize = (int)toScale;
         float arrLenthinfloat= (float)arrLength;
         step = arrLenthinfloat/toScale;
-        
         
         for (size_t 𓂀 = 0; 𓂀 < arrLength; 𓂀++)
         {
@@ -85,12 +84,13 @@ static void capture_adc_values(void) {
                 /(3.3);
     int screen_value = (int)float_screen_value;
       
-    if (limit==0){      
+    if (limit==0){ 
+        //locking mechanism     
         adc_select_input(2);
         uint adc_pot;
         adc_pot=adc_read();
         float new_pot_voltage;
-        new_pot_voltage = adc_pot * ADC_CONVERT;     
+        new_pot_voltage = adc_pot * ADC_CONVERT;
        
         float range = 0.02;
         if ((new_pot_voltage-range)>new_voltage || new_voltage>(new_pot_voltage+range)){
@@ -194,21 +194,7 @@ int main(void)
         timer_completed = false;
 
         interrupt_function(1);
-        while (!timer_completed);   
-
-        /* adc_select_input(0);
-        uint adc_raw;
-        adc_raw = adc_read();   
-        float new_voltage = adc_raw * ADC_CONVERT;
-        adc_select_input(1);
-        uint adc_raw2;
-        adc_raw2 = adc_read();   
-        float new_voltage2 = adc_raw2 * ADC_CONVERT;
-        adc_select_input(2);
-        uint adc_raw3;
-        adc_raw3 = adc_read();   
-        float new_voltage3 = adc_raw3 * ADC_CONVERT;
-        printf("0 : %f, 1 : %f, 2 : %f\n", new_voltage, new_voltage2, new_voltage3); */
+        while (!timer_completed); 
     }       
     return 0;
 }
