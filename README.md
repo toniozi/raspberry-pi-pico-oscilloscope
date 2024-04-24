@@ -40,8 +40,8 @@ The next thing is to download the Waveshare folder
 [7-zip](https://www.7-zip.org/download.html) to decompress it. This is
 the folder from which you will work. First set `PICO_SDK_PATH` as an
 environment variable, and set it to where your SDK folder is; usually,
-the directory link is C:/Program File/Raspberry Pi/Pico SDK
-v1.5.1/pico-sdk. Then copy the `pico_sdk_import.cmake` file from the
+the directory link is `C:/Program File/Raspberry Pi/Pico SDK
+v1.5.1/pico-sdk`. Then copy the `pico_sdk_import.cmake` file from the
 `pico-examples` folder in the c subfolder of the Waveshare folder.
 
 # Code and compilation
